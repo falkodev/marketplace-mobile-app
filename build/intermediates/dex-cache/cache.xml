@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/toni/AndroidStudioProjects/agorastock-sources/app/libs/jxl.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="7faf62e0697f7a88954622dfe8c8de33ed142ac7">
+        <dex dex="/home/toni/AndroidStudioProjects/agorastock-sources/app/build/intermediates/pre-dexed/debug/jxl_c69a280540a3b0d9af8f622ad713930ee965b59f.jar" />
+    </item>
+    <item
+        jar="/home/toni/AndroidStudioProjects/agorastock-sources/app/libs/cordova-2.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="05c3c27865d6647da7f930c9c6cb0db32ab0fd61">
+        <dex dex="/home/toni/AndroidStudioProjects/agorastock-sources/app/build/intermediates/pre-dexed/debug/cordova-2.2.0_0ebc2ad68c0425f1785061520bac1d29e8655db5.jar" />
+    </item>
+
+</items>

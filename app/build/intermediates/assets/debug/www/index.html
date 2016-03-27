@@ -1,0 +1,911 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>AGORASTOCK</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" href="css/jquery.mobile-1.2.0.css" />
+<link rel="stylesheet" href="css/agorastock.css" />
+<link rel="stylesheet" href="css/jquery.jqplot.min.css" />
+<link rel="stylesheet" href="css/validationEngine.jquery.css"
+	type="text/css" />
+<link rel="stylesheet" href="css/style.css" />
+
+<script src="js/lib/cordova-2.2.0.js" charset="utf-8"></script>
+<script src="js/lib/jquery.js" charset="utf-8"></script>
+<script src="js/lib/jquery.mobile-1.2.0.min.js" charset="utf-8"></script>
+<script src="js/lib/numberFormat.js"></script>
+<script src="js/lib/jquery.jqplot.min.js"></script>
+<script src="js/lib/jqplot.pieRenderer.min.js"></script>
+<script src="js/devicehandler.js" charset="utf-8"></script>
+<script src="js/datastore.js" charset="utf-8"></script>
+<script src="js/servicehandler.js" charset="utf-8"></script>
+<script src="js/mediator.js" charset="utf-8"></script>
+<script src="js/modules/login.js" charset="utf-8"></script>
+<script src="js/init.js" charset="utf-8"></script>
+</head>
+<body>
+	<section data-role="page" id="login" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<h3>AGORASTOCK</h3>
+			</div>
+		</header>
+		<article data-role="content">
+			<header class="content-header">
+				<img src="images/logo.gif" />
+			</header>
+
+			<div class="content-title">
+				<img src="images/user.png" /> <span class="text">CONNECTEZ
+					VOUS</span>
+			</div>
+
+			<div class="separateur"></div>
+
+			<div class="content-form ui-grid-a">
+				<div class="ui-block-a">
+					<input id="login-input" placeholder="Identifiant" />
+				</div>
+				<input id="login-key-input" placeholder="Clé d'activation"
+					class="ui-block-a" />
+				<div class="ui-block-b">
+					<a id="login-submit" data-role="button" data-icon="arrow-r"
+						data-iconpos="right" data-mini="true">Ok</a>
+				</div>
+            </div>
+
+			<div id="login-text">
+				<div id="login-text-avant-cle">
+					Agorastock est destiné aux collectivités et aux entreprises afin de
+					les aider à gérer leur matériel d’occasion ou usagé. Grâce à
+					Agorastock vous pouvez :<br />
+					<ul>
+						<li>Gérer votre inventaire physique directement depuis votre
+							tablette ou votre smartphone (saisie de données, prise de photos,
+							classement des produits d’après différents critères etc.)</li>
+						<li>Mettre vos produits d’occasion en vente sur la plateforme
+							<a onclick="navigator.app.loadUrl('http://www.agorastore.fr', {openExternal: true});return false;">Agorastore.fr</a>, le site de courtage enchères des collectivités et
+							des entreprises</li>
+					</ul>
+					POUR DECOUVRIR L’APPLICATION MERCI D’ADRESSER UNE DEMANDE A
+					<a href="mailto:agorastock@agorastore.fr">agorastock@agorastore.fr</a> <br />EN PRECISANT VOS COORDONNEES. NOUS
+					VOUS REPONDRONS DANS LES PLUS BREF DELAIS.
+				</div>
+				<div id="login-text-apres-cle">
+					Bienvenue sur Agorastock, l’application qui vous permet de :<br />
+					<ul>
+						<li>Gérer votre inventaire physique (saisie de données, prise
+							de photos, classement des produits d’après plusieurs critères)</li>
+						<li>Mettre en vente des produits sur <a onclick="navigator.app.loadUrl('http://www.agorastore.fr', {openExternal: true});return false;">Agorastore.fr</a></li>
+						<li>Consulter et mettre à jour vos ventes en lignes.</li>
+					</ul>
+					Pour accéder aux fonctionnalités merci de saisir votre identifiant
+					et votre mot de passe Agorastore.<br /> En cas de difficulté
+					contactez <a href="mailto:sav@agorastore.fr">sav@agorastore.fr</a>.
+
+				</div>
+				<!--  <a id="autoconnect">autoconnect</a>-->
+			</div>
+
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false">&nbsp;</footer>
+	</section>
+
+	<section data-role="page" id="password" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<h3>AGORASTOCK</h3>
+			</div>
+		</header>
+
+		<article data-role="content">
+
+			<header class="content-header">
+				<img src="images/logo.gif" />
+			</header>
+
+			<div class="content-title">
+				<img src="images/user.png" /> <span class="text">CONNECTEZ
+					VOUS</span>
+			</div>
+
+			<div class="separateur"></div>
+
+			<div class="content-form">
+				<div class="content-inside">
+					<div id="password-user-infos">
+						<span id="password-nom-utilisateur">Daniel</span> <a
+							id="password-change-user" data-role="button" data-inline="true"
+							data-icon="changer-utilisateur" data-iconpos="right"
+							data-mini="true">Changer</a>
+						<div id="password-nom-vendeur">Saint Quentin en Yvelines</div>
+					</div>
+					<div class="separateur2"></div>
+					<div id="password-images">
+						<img src="images/login/0.gif" /> <img src="images/login/1.gif" />
+						<img src="images/login/2.gif" /> <img src="images/login/3.gif" />
+						<img src="images/login/4.gif" /> <img src="images/login/5.gif" />
+						<img src="images/login/6.gif" /> <img src="images/login/7.gif" />
+						<img src="images/login/8.gif" /> <img src="images/login/9.gif" />
+					</div>
+					<input id="password-input" type="text" readonly="readonly" />
+					<div class="separateur2"></div>
+				</div>
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a id="password-reset" data-role="button" data-icon="refresh"
+							data-iconpos="right">Réinitialiser</a>
+					</div>
+					<div class="ui-block-b">
+						<a id="password-submit" data-role="button" data-icon="arrow-r"
+							data-iconpos="right">Se connecter</a>
+					</div>
+				</div>
+			</div>
+
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false">&nbsp;</footer>
+	</section>
+
+
+	<section data-role="page" id="menu" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<h3>AGORASTOCK</h3>
+			</div>
+		</header>
+
+		<article data-role="content">
+
+			<header class="content-header">
+				<img src="images/logo.gif" />
+			</header>
+
+			<div class="content-title">
+				<span class="text">GERER VOS INVENTAIRES</span>
+			</div>
+
+			<div class="separateur"></div>
+
+			<div class="content-title content-form">
+				<img src="images/user.png" /> <span class="text">Bonjour, <span
+					id="menu-nom-utilisateur">Daniel</span></span> <a id="menu-deconnect"
+					data-role="button" data-inline="true" data-icon="deconnexion"
+					data-iconpos="right" data-mini="true">Déconnexion</a> <br
+					class="clear" />
+			</div>
+
+			<div class="separateur"></div>
+
+			<a id="menu-ajouter-produit" data-role="button"
+				data-icon="ajout-produit" data-iconpos="left" class="menu-link">Ajouter
+				un produit</a> <a id="menu-inventaires" href="#inventaires"
+				data-role="button" data-icon="inventaires" data-iconpos="left"
+				class="menu-link">Mes inventaires</a> <a id="menu-ventes"
+				href="#ventes" data-role="button" data-icon="ventes"
+				data-iconpos="left" class="menu-link">Mes ventes</a> <a
+				id="menu-statistiques" href="#stats" data-role="button"
+				data-icon="stats" data-iconpos="left" class="menu-link">Mes
+				statistiques</a>
+
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false">&nbsp;</footer>
+	</section>
+
+	<section data-role="page" id="ajprod1" class="ajprod" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<a data-role="button" data-icon="home" data-iconpos="left"
+					data-inline="true" href="#menu">Accueil</a>
+				<h3>AJOUTER UN PRODUIT</h3>
+				<a data-role="button" class="ui-btn-right ajprod5-end btn-right" data-icon="arrow-l" data-iconpos="right"
+				   data-inline="true" href="#menu">Terminer</a>
+			</div>
+		</header>
+
+		<div data-role="navbar" class="ajprod-navbar" data-iconpos="top">
+			<ul>
+				<li><a href="#ajprod1" class="current" data-icon="categorie">Catégorie</a></li>
+				<li><a href="#ajprod2" class="ajprod1-next-steps"
+					data-icon="libelle">Libellé</a></li>
+				<li><a href="#ajprod3" class="ajprod1-next-steps"
+					data-icon="photo">Photos</a></li>
+				<li><a href="#ajprod4" class="ajprod1-next-steps"
+					data-icon="statut">Statut</a></li>
+				<li><a href="#ajprod5" class="ajprod1-accueilnext-steps"
+					data-icon="inventaire">Inventaire</a></li>
+			</ul>
+		</div>
+		<article data-role="content">
+
+			<div class="content-title">
+				<span class="text">CATEGORIE DU PRODUIT</span>
+			</div>
+
+			<div class="separateur"></div>
+
+			<div class="content-form">
+				<div class="content-inside">
+					<form action="#" method="POST">
+						<label for="categorie-parent" class="select">Sélectionnez
+							une catégorie générale :</label><br /> <select name="categorie-parent"
+							id="ajprod1-categorie-parent"><option></option></select>
+
+						<div class="separateur2"></div>
+
+						<div id="ajprod1-categorie-div">
+							<label for="categorie" class="select">Précisez sa
+								sous-catégorie :</label><br /> <select name="categorie"
+								id="ajprod1-categorie"><option></option></select>
+						</div>
+					</form>
+				</div>
+			</div>
+			<a class="ajprod1-next-steps next" href="#ajprod2" data-role="button"
+				data-inline="true" data-icon="arrow-r" data-iconpos="right">Suivant</a>
+			<br class="clear" />
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false">&nbsp;</footer>
+	</section>
+
+	<section data-role="page" id="ajprod2" class="ajprod" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<a data-role="button" data-icon="home" data-iconpos="left"
+					data-inline="true" href="#menu">Accueil</a>
+				<h3>AJOUTER UN PRODUIT</h3>
+				<a data-role="button" class="ui-btn-right ajprod5-end btn-right" data-icon="arrow-l" data-iconpos="right"
+				   data-inline="true" href="#menu">Terminer</a>
+			</div>
+		</header>
+		<div data-role="navbar" class="ajprod-navbar" data-iconpos="top">
+			<ul>
+				<li><a href="#ajprod1" data-icon="categorie">Catégorie</a></li>
+				<li><a href="#ajprod2" class="current" data-icon="libelle">Libellé</a></li>
+				<li><a href="#ajprod3" class="ajprod2-next-steps"
+					data-icon="photo">Photos</a></li>
+				<li><a href="#ajprod4" class="ajprod2-next-steps"
+					data-icon="statut">Statut</a></li>
+				<li><a href="#ajprod5" class="ajprod2-next-steps"
+					data-icon="inventaire">Inventaire</a></li>
+			</ul>
+		</div>
+
+		<article data-role="content">
+			<div class="content-title">
+
+				<span class="text">INFORMATIONS GENERALES</span>
+
+			</div>
+
+			<div class="separateur"></div>
+
+			<div class="content-form">
+				<div class="content-inside">
+					<form id="ajprod2-form" action="#" method="POST">
+						<h3>Libellé du produit</h3>
+						<input class="required validate[required]"
+							data-prompt-position="bottomLeft:20,5" name="libelle"
+							id="ajprod2-libelle" />
+						<div class="separateur2"></div>
+						<h3>
+							Descriptifs <span class="mini">(*&nbsp;champs
+								obligatoires)</span>
+						</h3>
+						<div id="ajprod2-descriptifs" class="ui-grid-a"></div>
+					</form>
+				</div>
+			</div>
+			<a class="next ajprod2-next-steps" href="#ajprod3" id="ajprod2-next"
+				data-role="button" data-inline="true" data-icon="arrow-r"
+				data-iconpos="right">Suivant</a> <a class="next"
+				id="ajprod2-enregistrer" data-role="button" data-inline="true"
+				data-icon="check" data-iconpos="right">Enregistrer</a> <br
+				class="clear" />
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false">&nbsp;</footer>
+	</section>
+
+	<section data-role="page" id="ajprod3" class="ajprod" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<a data-role="button" data-icon="home" data-iconpos="left"
+					data-inline="true" href="#menu">Accueil</a>
+				<h3>AJOUTER UN PRODUIT</h3>
+				<a data-role="button" class="ui-btn-right ajprod5-end btn-right" data-icon="arrow-l" data-iconpos="right"
+				   data-inline="true" href="#menu">Terminer</a>
+			</div>
+		</header>
+		<div data-role="navbar" class="ajprod-navbar" data-iconpos="top">
+			<ul>
+				<li><a href="#ajprod1" data-icon="categorie">Catégorie</a></li>
+				<li><a href="#ajprod2" data-icon="libelle">Libellé</a></li>
+				<li><a href="#ajprod3" class="current" data-icon="photo">Photos</a></li>
+				<li><a href="#ajprod4" class="ajprod3-next-steps"
+					data-icon="statut">Statut</a></li>
+				<li><a href="#ajprod5" class="ajprod3-next-steps"
+					data-icon="inventaire">Inventaire</a></li>
+			</ul>
+		</div>
+
+		<article data-role="content">
+			<div class="content-title">
+
+				<span class="text">PHOTO</span>
+
+			</div>
+			<div class="separateur"></div>
+
+			<!-- <a href="#ajprod3-add-picture-popup" data-role="button"
+				data-rel="popup" data-icon="plus" data-iconpos="left">Associer
+				une photo</a>
+
+			<div data-role="popup" id="ajprod3-add-picture-popup"
+				class="ui-content" data-position-to="origin">
+				<a id="ajprod3-take-pic" data-role="button" data-icon="camera"
+					data-iconpos="left">Prendre une photo</a> <a
+					id="ajprod3-select-pic" data-role="button" data-icon="file-manager"
+					data-iconpos="left">Sélectionner une photo</a>
+			</div> -->
+
+			<a id="ajprod3-take-pic" data-role="button" data-icon="camera"
+					data-iconpos="left">Prendre une photo</a> 
+			<a id="ajprod3-select-pic" data-role="button" data-icon="file-manager"
+					data-iconpos="left">Sélectionner une photo</a>
+
+			<div class="content-form">
+				<div class="content-inside">
+					<ul id="ajprod3-images" data-role="listview" data-inset="true">
+						Pas d'image ajoutée encore
+						<!--<li>-->
+							<!--<div class="ajprod3-image" data-n-image="1">-->
+								<!--<a class="ajprod3-image-delete" data-role="button"-->
+									<!--data-icon="trash" data-iconpos="notext" data-inline="true">Supprimer</a>-->
+								<!--<div class="ajprod3-image-body">-->
+									<!--<img class="ajprod3-img" src="images/vide.png">-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</li>-->
+						<!--<li>-->
+							<!--<div class="ajprod3-image" data-n-image="2">-->
+								<!--<a class="ajprod3-image-delete" data-role="button"-->
+									<!--data-icon="trash" data-iconpos="notext" data-inline="true">Supprimer</a>-->
+								<!--<div class="ajprod3-image-body">-->
+									<!--<img class="ajprod3-img" src="images/vide.png">-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</li>-->
+						<!--<li>-->
+							<!--<div class="ajprod3-image" data-n-image="3">-->
+								<!--<a class="ajprod3-image-delete" data-role="button"-->
+									<!--data-icon="trash" data-iconpos="notext" data-inline="true">Supprimer</a>-->
+								<!--<div class="ajprod3-image-body">-->
+									<!--<img class="ajprod3-img" src="images/vide.png">-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</li>-->
+						<!--<li>-->
+							<!--<div class="ajprod3-image" data-n-image="4">-->
+								<!--<a class="ajprod3-image-delete" data-role="button"-->
+									<!--data-icon="trash" data-iconpos="notext" data-inline="true">Supprimer</a>-->
+								<!--<div class="ajprod3-image-body">-->
+									<!--<img class="ajprod3-img" src="images/vide.png">-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</li>-->
+						<!--<li>-->
+							<!--<div class="ajprod3-image" data-n-image="5">-->
+								<!--<a class="ajprod3-image-delete" data-role="button"-->
+									<!--data-icon="trash" data-iconpos="notext" data-inline="true">Supprimer</a>-->
+								<!--<div class="ajprod3-image-body">-->
+									<!--<img class="ajprod3-img" src="images/vide.png">-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</li>-->
+					</ul>
+				</div>
+			</div>
+			<a class="next ajprod3-next-steps" href="#ajprod4" data-role="button"
+				data-inline="true" data-icon="arrow-r" data-iconpos="right">Suivant</a>
+			<a class="next" id="ajprod3-enregistrer" data-role="button"
+				data-inline="true" data-icon="check" data-iconpos="right">Enregistrer</a>
+			<br class="clear" />
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false">&nbsp;</footer>
+	</section>
+
+	<section data-role="page" id="ajprod4" class="ajprod" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<a data-role="button" data-icon="home" data-iconpos="left"
+					data-inline="true" href="#menu">Accueil</a>
+				<h3>AJOUTER UN PRODUIT</h3>
+				<a data-role="button" class="ui-btn-right ajprod5-end btn-right" data-icon="arrow-l" data-iconpos="right"
+				   data-inline="true" href="#menu">Terminer</a>
+			</div>
+		</header>
+
+		<div data-role="navbar" class="ajprod-navbar" data-iconpos="top">
+			<ul>
+				<li><a href="#ajprod1" data-icon="categorie">Catégorie</a></li>
+				<li><a href="#ajprod2" data-icon="libelle">Libellé</a></li>
+				<li><a href="#ajprod3" data-icon="photo">Photos</a></li>
+				<li><a href="#ajprod4" class="current" data-icon="statut">Statut</a></li>
+				<li><a href="#ajprod5" class="ajprod4-next-steps"
+					data-icon="inventaire">Inventaire</a></li>
+			</ul>
+		</div>
+
+		<article data-role="content">
+			<div class="content-title">
+				<span class="text">STATUT</span>
+			</div>
+			<div class="separateur"></div>
+			<div class="content-form">
+				<div class="content-inside">
+					<form id="ajprod4-form" action="#" method="POST">
+						<h3>
+							Descriptifs communs <span class="mini required-star">(*&nbsp;champs
+								obligatoires)</span>
+						</h3>
+						<div id="ajprod4-descriptifs-commun">
+							<div class="ui-grid-a">
+								<label for="statutProduit" class="ui-block-a">Statut du
+									produit<span class="required-star">&nbsp;*</span>
+								</label>
+								<div class="ui-block-b">
+									<select name="statutProduit" id="ajprod4-statutProduit">
+										<option value="brouillon">Brouillon</option>
+										<option value="prepvente">Préparation de vente</option>
+										<option value="avendre">A vendre</option>
+										<option value="utilises">Actuellement utilisé</option>
+										<option value="areaffecter">A réaffecter</option>
+										<option value="adonner">A donner</option>
+										<option value="adetruire">Mise au rebut</option>
+									</select>
+								</div>
+
+								<label for="dateDebutEnchere" class="ui-block-a"
+									data-inline="true">Date de début d'enchère<span
+									class="required-star">&nbsp;*</span></label>
+								<div class="ui-block-b calendrier">
+									<span class="divcalendar"> <input
+										name="dateDebutEnchere" id="ajprod4-dateDebutEnchere"
+										data-type="date" data-inline="true"
+										class="required validate[required,funcCall[validate]]"
+										data-prompt-position="bottomLeft:20,5" />
+									</span> <span class="heuremin"> <select
+										name="heureDebutEnchere" id="ajprod4-heureDebutEnchere"
+										data-inline="true">
+											<option></option>
+									</select>h<select name="minDebutEnchere" id="ajprod4-minDebutEnchere"
+										data-inline="true">
+											<option></option>
+									</select>
+									</span>
+								</div>
+
+								<label for="dateFinEnchere" class="ui-block-a"
+									data-inline="true">Date de fin d'enchère<span
+									class="required-star">&nbsp;*</span></label>
+								<div class="ui-block-b calendrier">
+									<span class="divcalendar"> <input name="dateFinEnchere"
+										id="ajprod4-dateFinEnchere" data-type="date"
+										data-inline="true"
+										class="required validate[required,funcCall[validate]]"
+										data-prompt-position="bottomLeft:20,5" />
+									</span> <span class="heuremin"> <select name="heureFinEnchere"
+										id="ajprod4-heureFinEnchere" data-inline="true">
+											<option></option>
+									</select>h<select name="minFinEnchere" id="ajprod4-minFinEnchere"
+										data-inline="true">
+											<option></option>
+									</select>
+								</div>
+
+								<label for="prixInitial" class="ui-block-a" data-inline="true">Mise
+									à prix (<span id="ajprod4-ttc-ht"></span>)<span
+									class="required-star">&nbsp;*</span>
+								</label>
+								<div class="ui-block-b">
+									<input name="prixInitial" id="ajprod4-prixInitial"
+										data-mini="true"
+										class="required validate[required,custom[number]] has-unite" /><span
+										class="unite">&euro;</span>
+								</div>
+
+								<label for="pasEnchere" class="ui-block-a" data-inline="true">Pas
+									d'enchère<span class="required-star">&nbsp;*</span>
+								</label>
+								<div class="ui-block-b">
+									<input name="pasEnchere" id="ajprod4-pasEnchere"
+										data-mini="true"
+										class="required validate[required,custom[pourcentage]] has-unite" /><span
+										class="unite">%</span>
+								</div>
+
+								<label for="tauxTVA" class="ui-block-a" data-inline="true">Taux
+									de TVA<span class="required-star">&nbsp;*</span>
+								</label>
+								<div class="ui-block-b">
+									<select name="tauxTVA" id="ajprod4-tauxTVA">
+										<option value="0">0 %</option>
+										<option value="5.5">5.5 %</option>
+										<option value="19.6">19.6 %</option>
+									</select>
+								</div>
+
+								<label for="contactProduit" class="ui-block-a"
+									data-inline="true">Contact produit</label> <input
+									name="contactProduit" id="ajprod4-contactProduit"
+									data-mini="true" class="ui-block-b"
+									data-prompt-position="bottomLeft:20,5" /> <label
+									for="contactRetrait" class="ui-block-a" data-inline="true">Contact
+									retrait</label> <input name="contactRetrait"
+									id="ajprod4-contactRetrait" data-mini="true" class="ui-block-b"
+									data-prompt-position="bottomLeft:20,5" /> <label
+									for="modaliteRetrait" class="ui-block-a" data-inline="true">Modalité
+									de retrait<span class="required-star">&nbsp;*</span>
+								</label>
+								<textarea name="modaliteRetrait" id="ajprod4-modaliteRetrait"
+									data-mini="true" class="validate[required] required ui-block-b"
+									data-prompt-position="bottomLeft:20,5"></textarea>
+
+								<label for="modalitePaiement" class="ui-block-a"
+									data-inline="true">Modalité de paiement<span
+									class="required-star">&nbsp;*</span></label>
+								<textarea name="modalitePaiement" id="ajprod4-modalitePaiement"
+									data-mini="true" class="required validate[required] ui-block-b"
+									data-prompt-position="bottomLeft:20,5"></textarea>
+
+								<label for="idProvenance" class="ui-block-a" data-inline="true">Provenance<span
+									class="required-star">&nbsp;*</span></label>
+								<div class="ui-block-b">
+									<select name="idProvenance" id="ajprod4-idProvenance"
+										class="ui-block-b"><option></option></select>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<a class="next ajprod4-next-steps" href="#ajprod5" data-role="button"
+				data-inline="true" data-icon="arrow-r" data-iconpos="right">Suivant</a>
+			<a class="next" id="ajprod4-enregistrer" data-role="button"
+				data-inline="true" data-icon="check" data-iconpos="right">Enregistrer</a>
+			<br class="clear" />
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false">&nbsp;</footer>
+	</section>
+
+	<section data-role="page" id="ajprod5" class="ajprod" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<a data-role="button" data-icon="home" data-iconpos="left"
+					data-inline="true" href="#menu">Accueil</a>
+				<h3>AJOUTER UN PRODUIT</h3>
+				<a data-role="button" class="ui-btn-right ajprod5-end btn-right" data-icon="arrow-l" data-iconpos="right"
+				   data-inline="true" href="#menu">Terminer</a>
+			</div>
+		</header>
+
+		<div data-role="navbar" class="ajprod-navbar" data-iconpos="top">
+			<ul>
+				<li><a href="#ajprod1" data-icon="categorie">Catégorie</a></li>
+				<li><a href="#ajprod2" data-icon="libelle">Libellé</a></li>
+				<li><a href="#ajprod3" data-icon="photo">Photos</a></li>
+				<li><a href="#ajprod4" data-icon="statut">Statut</a></li>
+				<li><a href="#ajprod5" class="current" data-icon="inventaire">Inventaire</a></li>
+			</ul>
+		</div>
+
+		<article data-role="content">
+			<div class="content-title">
+				<span class="text">ASSOCIER À UN INVENTAIRE</span>
+			</div>
+			<div class="separateur"></div>
+			<div class="content-form">
+				<div class="content-inside">
+					<form action="#" method="POST">
+						<select id="ajprod5-inventaire"><option></option></select> <a
+							id="ajprod5-nouvelInventaire" data-role="button"
+							data-inline="true" data-icon="plus" data-iconpos="right">Ajouter
+							un nouvel inventaire</a> <br class="clear" />
+						<div id="ajprod5-nouvelInventairePopup" class="ui-content">
+							<label>Nouvel inventaire :</label> <input
+								id="ajprod5-nouvelInventaireLibelle" /> <a
+								id="ajprod5-nouvelInventaireValider" href="#" data-role="button"
+								data-theme="a" data-icon="check" data-iconpos="right"
+								class="next">Ajouter</a> <a id="ajprod5-nouvelInventaireAnnuler"
+								href="#" data-role="button" data-theme="a" data-icon="delete"
+								data-iconpos="right" class="next">Annuler</a> <br class="clear" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="next">
+				<a class="ajprod5-end" data-role="button" data-inline="true"
+					data-icon="arrow-r" data-iconpos="right" data-mini="false">Terminer</a>
+			</div>
+			<br class="clear" />
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false">&nbsp;</footer>
+	</section>
+
+	<section data-role="page" id="inventaires" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<a data-role="button" data-icon="home" data-iconpos="left"
+					data-inline="true" href="#menu">Accueil</a>
+				<h3>MON INVENTAIRE</h3>
+			</div>
+		</header>
+
+		<article data-role="content">
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <select name="filtre" id="inventaires-filtre"><option></option></select>
+                </div>
+                <div class="ui-block-b">
+                    <select name="filtre-statut" id="inventaires-filtre-statut">
+                        <option value="*">Tous les statuts</option>
+                        <option value="brouillon">Brouillon</option>
+                        <option value="prepvente">Préparation de vente</option>
+                        <option value="avendre">A vendre</option>
+                        <option value="utilises">Actuellement utilisé</option>
+                        <option value="areaffecter">A réaffecter</option>
+                        <option value="adonner">A donner</option>
+                        <option value="adetruire">Mise au rebut</option>
+                    </select>
+                </div>
+            </div>
+			<div class="content-form">
+				<form action="#" method="POST">
+					<div id="inventaires-boutons-haut">
+						<a data-inline="true" data-icon="delete"
+							id="inventaires-delete-tous">Supprimer tout</a>
+						<a data-role="button" data-inline="true" data-icon="upload"
+						    id="inventaires-upload-tous">Charger tout</a>
+                        <a data-role="button" data-inline="true" data-icon="xls"
+                            id="inventaires-export-tous">Exporter tout</a>
+                        <br class="clear" />
+					</div>
+				</form>
+			</div>
+            <ul id="inventaires-liste-produits" data-role="listview"
+                data-inset="true">
+            </ul>
+		</article>
+	</section>
+
+	<section data-role="page" id="consultation" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<a data-role="button" data-icon="back" data-iconpos="left"
+					data-inline="true" href="#inventaires">Retour</a>
+				<h3>MES INVENTAIRES</h3>
+			</div>
+		</header>
+
+		<article data-role="content">
+			<a data-role="button" id="consultation-edit" data-icon="arrow-r"
+				data-iconpos="right">Modifier</a>
+			<div id="consultation-libelle" class="content-title"></div>
+			<div class="separateur"></div>
+			<div id="consultation-photos">
+				<img id="consultation-photo">
+				<div id="consultation-miniatures"></div>
+			</div>
+			<div id="consultation-infos">
+                <a data-role="button" id="consultation-inv-statut">
+                    <span id="consultation-inventaire"></span>
+                    <span id="consultation-statut"></span>
+                </a> 
+				<div class="content-form">
+					<h2>Informations de vente</h2>
+					<label>Prix initial&nbsp;:&nbsp;</label><span
+						id="consultation-prix-initial"></span>&nbsp;€&nbsp;<span
+						id="consultation-taxes"></span><br /> <label>Date de début
+						d'enchère&nbsp;:&nbsp;</label><span id="consultation-date-debut"></span><br />
+					<label>Date de fin d'enchère&nbsp;:&nbsp;</label><span
+						id="consultation-date-fin"></span><br />
+				</div>
+				<div class="content-form">
+					<h2>Descriptif du produit</h2>
+					<div id="consultation-descriptif"></div>
+				</div>
+				<div class="content-form">
+					<h2>Modalités de paiement</h2>
+					<div id="consultation-modalites-paiement"></div>
+				</div>
+			</div>
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false" data-theme="b"> </footer>
+
+	</section>
+
+	<section data-role="page" id="ventes" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<a data-role="button" data-icon="home" data-iconpos="left"
+					data-inline="true" href="#menu">Accueil</a>
+				<h3>MES VENTES</h3>
+			</div>
+		</header>
+
+
+		<article data-role="content">
+			<a data-role="button" data-inline="true" data-icon="gear"
+				id="ventes-filter-button">Filtrer</a>
+			<div class="clear"></div>
+			<div id="ventes-filter" class="content-form ui-grid-c">
+				<div class="ui-block-a">
+					<label>Etat de la vente :</label> <select id="ventes-etat">
+						<option></option>
+						<option value="1">A venir</option>
+						<option value="2">En cours</option>
+						<option value="3">Terminés</option>
+						<option value="4">En cours et à venir</option>
+					</select>
+				</div>
+				<div class="ui-block-b">
+					<label>Début de vente après le&nbsp;:</label>
+					<div class="input-button">
+						<a data-role="button" data-inline="true" data-icon="delete"
+							data-iconpos="notext" class="ventes-reset">Reset</a> <input
+							id="ventes-debut" data-type="date" />
+					</div>
+				</div>
+				<div class="ui-block-c">
+					<label>Fin de vente avant le&nbsp;:</label>
+					<div class="input-button">
+						<a data-role="button" data-inline="true" data-icon="delete"
+							data-iconpos="notext" class="ventes-reset">Reset</a> <input
+							id="ventes-fin" data-type="date" />
+					</div>
+				</div>
+				<div class="ui-block-d">
+					<label>Catégorie :</label> <select id="ventes-categorie">
+						<option></option>
+					</select>
+				</div>
+			</div>
+			<ul id="ventes-listview" data-role="listview" data-inset="true"></ul>
+			<div id="ventes-plus">Chargement en cours ...</div>
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false" data-theme="b"> </footer>
+	</section>
+
+	<section data-role="page" id="stats" class="stats" data-theme="a">
+		<header data-role="header" data-position="fixed"
+			data-tap-toggle="false">
+			<div class="ui-title">
+				<a data-role="button" data-icon="home" data-iconpos="left"
+					data-inline="true" href="#menu">Accueil</a>
+				<h3>MES STATISTIQUES</h3>
+			</div>
+		</header>
+
+		<article data-role="content">
+			<div id="tab-stats-ec" class="content-form stat-form">
+				<div class="content-title stat-title"><span class="ui-icon-bars">&nbsp;</span>Les ventes en cours</div>
+                <div class="separateur2"/></div>
+                <div class="stat-line">
+					<div class="stat-label">Nb. ventes en cours</div>
+					<div class="stat-data" id="nbVentesEnCours"></div>
+				</div>
+				<div class="stat-line">
+					<div class="stat-label">Nb. enchères</div>
+					<div class="stat-data" id="nbEncheres"></div>
+				</div>
+				<div class="stat-line">
+					<div class="stat-label">Nb. pdts enchéris</div>
+					<div class="stat-data" id="nbPdtsEncheris"></div>
+				</div>
+				<div class="stat-line">
+					<div class="stat-label">Prix pdts enchéris</div>
+					<div class="stat-data" id="prixPdtsEncheris"></div>
+				</div>
+			</div>
+			<div class="separateur"></div>
+			<div id="tab-stats-term" class="content-form stat-form">
+				<div class="content-title stat-title"><span class="ui-icon-curve">&nbsp;</span>Les ventes terminées au cours du mois</div>
+				<div class="separateur2"/></div>
+                <div class="stat-line">
+					<div class="stat-label">Nb. pdts vendus</div>
+					<div class="stat-data" id="nbPdtsVendus"></div>
+				</div>
+				<div class="stat-line">
+					<div class="stat-label">Nb. enchères pdts vendu</div>
+					<div class="stat-data" id="nbEncheresPdtsVendus"></div>
+				</div>
+				<div class="stat-line">
+					<div class="stat-label">Prix pdts vendus</div>
+					<div class="stat-data" id="prixPdtsVendus"></div>
+				</div>
+				<div id="chart-stats" data-role="content" data-inset="true"
+					data-filter="false" class="stat-chart"></div>
+				<div id="ResultsDiv"></div>
+			</div>
+		</article>
+
+		<footer data-role="footer" data-position="fixed"
+			data-tap-toggle="false">&nbsp;</footer>
+	</section>
+
+	<section data-role="page" id="upload-popup" class="ui-content">
+		<div data-role="header" data-position="fixed">
+			<h1>Upload de produit</h1>
+		</div>
+
+		<div data-role="content">
+			<div id="upload-progress">
+				<div id="upload-progress-value"></div>
+			</div>
+			<p id="upload-info"></p>
+			<a data-rel="back" class="next" data-role="button" data-icon="back">Fermer</a>
+			<br class="clear" />
+		</div>
+
+		<div data-role="footer">&nbsp;</div>
+	</section>
+
+	<script src="js/lib/md5.js"></script>
+
+	<script src="js/lib/jquery.ui.datepicker.js" charset="utf-8"></script>
+	<script src="js/lib/jquery.ui.datepicker.mobile.js" charset="utf-8"></script>
+	<script src="js/lib/jquery.ui.datepicker-fr.js" charset="utf-8"></script>
+	<script src="js/lib/jquery.validationEngine-fr.js"
+		type="text/javascript" charset="utf-8"></script>
+	<script src="js/lib/jquery.validationEngine.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="js/modules/error.js"></script>
+	<script src="js/modules/menu.js"></script>
+	<script src="js/modules/ajprod1.js"></script>
+	<script src="js/modules/ajprod2.js"></script>
+	<script src="js/modules/ajprod3.js"></script>
+	<script src="js/modules/ajprod4.js"></script>
+	<script src="js/modules/ajprod5.js"></script>
+	<script src="js/modules/inventaires.js"></script>
+	<script src="js/modules/consultation.js"></script>
+	<script src="js/modules/ventes.js"></script>
+	<script src="js/modules/stats.js"></script>
+	<script src="js/modules/upload.js"></script>
+</body>
+</html>
+
+
