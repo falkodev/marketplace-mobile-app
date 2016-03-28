@@ -748,6 +748,23 @@ function DataStore(){
 		},onError,successCB);      			    
 	    	    
 	}
+
+	//***************************************************************
+	// Suppression d'une image de produit
+	//***************************************************************
+//	this.checkUtilisateurLogged = function(callback){
+//		this.open();
+//		db.transaction(function(tx){
+//			tx.executeSql('DELETE FROM IMAGES_PRODUIT WHERE logged = 1',[],function (tx,res){
+//				if (res.rows.length == 0){
+//					callback(false);
+//				}else{
+//					var row = res.rows.item(0);
+//					callback(row['login']);
+//				}
+//			},onError);
+//		});
+//	}
 	
 
 	//***************************************************************

@@ -66,8 +66,8 @@ var ajprod3Module = function(mediator){
 			n++;
     	});
     	$(domElements.listPic).on('click', '.ajprod3-image-delete', function(){
-//    		console.log('this: ' + $(this).closest('.ajprod3-image').data('n-image'));
-			onImageDelete($(this).closest('.ajprod3-image').data('n-image'));
+//			alert('depuis onShow');
+			onImageDelete($(this).closest('.ajprod3-image').data('n-image'), $(this).closest('li'));
 		});
     	if(undefined===mediator.data.produitCourant.descriptifsCommuns)mediator.data.produitCourant.descriptifsCommuns={};
     	if(undefined==mediator.data.produitCourant.descriptifsCommuns.libelle)mediator.data.produitCourant.descriptifsCommuns.libelle='';
@@ -103,9 +103,10 @@ var ajprod3Module = function(mediator){
 
 		var onCopySuccess = function(fileEntry){
 			showImage(n, fileEntry.fullPath);
-			$(domElements.listPic).on('click', '.ajprod3-image-delete', function(){
-				onImageDelete();
-			});
+//			$(domElements.listPic).on('click', '.ajprod3-image-delete', function(){
+//				alert('depuis onCopySuccess');
+//				onImageDelete($(this).closest('.ajprod3-image').data('n-image'));
+//			});
 			if(undefined === mediator.data.produitCourant.images){
 				mediator.data.produitCourant.images=[];
 			}
@@ -115,7 +116,6 @@ var ajprod3Module = function(mediator){
 				id:fileEntry.name,
 				path:fileEntry.fullPath
 			});
-			$(newLi).find('.ajprod3-image-delete').show();
 		};
 	
         navigator.camera.getPicture(onGetPictureSuccess, onError, { quality:90,
@@ -139,7 +139,7 @@ var ajprod3Module = function(mediator){
 		getAndSaveImage(Camera.PictureSourceType.CAMERA);
 	};
 	
-	var onImageDelete = function(deleteImageNum){
+	var onImageDelete = function(deleteImageNum, pictureToRemove, pathPictureToRemove){
 //		var $deleteImage = $(this).closest('.ajprod3-image');
 //		$.each($deleteImage, function(k, v){
 //			console.log('$deleteImage[' + k + ']: ' + v);
@@ -178,10 +178,18 @@ var ajprod3Module = function(mediator){
 					mediator.data.produitCourant.images.splice(i,1);
 					found = true;
 				}
-				alert('found: ' + found);
+				console.log('i:' + i +' path:' + image.path + ' found:' + found + ' deleteImageNum:' + deleteImageNum + ' idProduit:' + mediator.data.produitCourant.idLocal);
 				if (found && mediator.data.produitCourant.images[i]!=undefined)
 				{
-					mediator.data.produitCourant.images[i].ordre = mediator.data.produitCourant.images[i].ordre -1; 
+					mediator.data.produitCourant.images[i].ordre = mediator.data.produitCourant.images[i].ordre -1;
+//					window.location.href += "#ajprod3";
+//					console.log("location: " + window.location.href);
+				}
+
+				if (found) {
+//					console.log("element a supprimer : " + pictureToRemove);
+					pictureToRemove.remove();
+					break;
 				}
 			}
 		}

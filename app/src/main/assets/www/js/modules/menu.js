@@ -75,6 +75,7 @@ var menuModule = function(mediator){
 	};
 	
 	var onDeconnectButtonClick = function(){
+		mediator.dataStore.logoutUtilisateur();
 		mediator.publish('deconnect');
 	};
 	

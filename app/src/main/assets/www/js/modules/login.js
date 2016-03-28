@@ -37,7 +37,6 @@ var loginModule = function(mediator){
 					} else {
 						domElements.loginTextAvantCle.hide();
 						domElements.loginTextApresCle.show();
-						domElements.keyInput.show();
 					}
 				});		
 			}
