@@ -651,13 +651,13 @@ function DataStore(){
 		var nouveauClient = false;
 		
 		db.transaction(function(tx){
-    		tx.executeSql('SELECT p.id, p.libelle, p.prixInitial, p.statutProduit, '
+    		tx.executeSql('SELECT DISTINCT(p.id), p.libelle, p.prixInitial, p.statutProduit, '
     				+ 'i.id as id_inventaire, i.libelle as libelle_inventaire, '
     				+ 'ip.path as image '
     				+ 'FROM PRODUITS p '
     				+ 'LEFT JOIN INVENTAIRES i ON i.id = p.id_inventaire AND p.id_client = i.id_client '
-    				+ 'LEFT JOIN IMAGES_PRODUITS ip ON ip.id_produit = p.id AND ip.ordre = 1 '
-    				+ 'WHERE p.id_client = ? ORDER BY p.id DESC',[idClient],function (tx,res){
+    				+ 'LEFT JOIN IMAGES_PRODUITS ip ON ip.id_produit = p.id '
+    				+ 'WHERE p.id_client = ? GROUP BY p.id ORDER BY p.id DESC',[idClient],function (tx,res){
     			var produits = [];
     			var inventaires = [];
     			for(i=0; i<res.rows.length; i++){
@@ -750,22 +750,27 @@ function DataStore(){
 	}
 
 	//***************************************************************
-	// Suppression d'une image de produit
+	// Liste d'images d'un produit
 	//***************************************************************
-//	this.checkUtilisateurLogged = function(callback){
-//		this.open();
-//		db.transaction(function(tx){
-//			tx.executeSql('DELETE FROM IMAGES_PRODUIT WHERE logged = 1',[],function (tx,res){
-//				if (res.rows.length == 0){
-//					callback(false);
-//				}else{
-//					var row = res.rows.item(0);
-//					callback(row['login']);
-//				}
-//			},onError);
-//		});
-//	}
-	
+	this.getImagesProduit = function(idProduit, callback){
+		this.open();
+		db.transaction(function(tx){
+			tx.executeSql('SELECT * FROM IMAGES_PRODUITS WHERE id_produit = ? ORDER BY ordre',[idProduit],function (tx,res){
+				images = [];
+				for(i=0; i < res.rows.length; i++){
+					var row = res.rows.item(i);
+
+					images.push({
+						ordre:row.ordre,
+						id:row.id_image,
+						path:row.path
+					});
+				}
+
+				callback(images);
+			});
+		});
+	}
 
 	//***************************************************************
 	//Affichage des erreurs

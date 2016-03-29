@@ -62,7 +62,7 @@ var inventairesModule = function(mediator){
 					statut = mediator.data.statutsProduits[p.statutProduit];
 					if(p.statutProduit == 'avendre')
 						domElements.uploadTous.removeClass('ui-disabled');
-					
+
 					var chargerEnLigneKO = (!mediator.data.isConnected || 'avendre' !== p.statutProduit);
 					$('<li data-icon="false">').attr('data-idprod',p.id)
 						.attr('data-idinv',p.idInventaire)
